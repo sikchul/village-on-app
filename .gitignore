@@ -10,6 +10,7 @@
 
 # production
 /dist
+/script
 
 # misc
 .DS_Store

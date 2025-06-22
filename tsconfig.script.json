@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "CommonJS",
+      "moduleResolution": "Node",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": false,
+      "baseUrl": ".",
+      "paths": {
+        "@shared/*": ["src/shared/*"],
+        "@entities/*": ["src/entities/*"]
+      },
+      "outDir": "script"
+    },
+    "include": ["src/shared/api/open-api/script.ts"]
+  }
+  

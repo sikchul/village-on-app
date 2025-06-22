@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "unique_village" ON "villages" USING btree ("exprn_village_nm","ctprvn_nm","signgu_nm");

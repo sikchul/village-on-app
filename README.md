@@ -1,6 +1,7 @@
 # App Template
 
 - 초기 세팅 테플릿
+- package.json 프로젝트에 맞게 필드 수정
 
 ## A. Root
 

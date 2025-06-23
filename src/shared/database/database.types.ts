@@ -86,7 +86,33 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      get_home_village_list: {
+        Row: {
+          appn_date: string | null
+          ctprvn_nm: string | null
+          exprn_ar: string | null
+          exprn_cn: string | null
+          exprn_pic_url: string | null
+          exprn_se: string | null
+          exprn_village_nm: string | null
+          hold_fclty: string | null
+          homepage_url: string | null
+          institution_nm: string | null
+          instt_code: string | null
+          instt_nm: string | null
+          latitude: string | null
+          likes: number | null
+          lnmadr: string | null
+          longitude: string | null
+          phone_number: string | null
+          rdnmadr: string | null
+          reference_date: string | null
+          rprsntv_nm: string | null
+          signgu_nm: string | null
+          village_id: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

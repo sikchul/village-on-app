@@ -1,7 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Home.css';
+import { type RouteComponentProps } from 'react-router-dom';
 
-const Home: React.FC = () => {
+interface HomeProps extends RouteComponentProps {}
+
+export default function Home({}: HomeProps) {
   return (
     <IonPage>
       <IonHeader>
@@ -9,15 +11,9 @@ const Home: React.FC = () => {
           <IonTitle>Blank</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent>
+        <div>Home</div>
       </IonContent>
     </IonPage>
   );
-};
-
-export default Home;
+}

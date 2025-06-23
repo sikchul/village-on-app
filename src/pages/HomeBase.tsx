@@ -1,10 +1,12 @@
-import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
+import { IonIcon, IonLabel, IonRouterOutlet, IonTabButton, IonTabs } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
+import { TabBar } from '@shared/ui/tab-bar';
 import { homeOutline, imageOutline, leafOutline, personOutline } from 'ionicons/icons';
 import { useMemo } from 'react';
 import { Route, type RouteComponentProps } from 'react-router-dom';
 
 import Home from './Home';
+import styles from './HomeBase.module.scss';
 
 interface HomeBaseProps extends RouteComponentProps {}
 
@@ -41,16 +43,15 @@ export default function HomeBase({ match, history }: HomeBaseProps) {
     });
   }, [match.url]);
 
-  console.log(match.url);
-
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route exact path={`${match.url}`} component={Home} />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
+      <TabBar slot="bottom">
         {tabButtons.map((item) => (
           <IonTabButton
+            className={styles['tab-button']}
             key={item.label}
             tab={item.path}
             selected={item.selected}
@@ -62,7 +63,7 @@ export default function HomeBase({ match, history }: HomeBaseProps) {
             <IonLabel>{item.label}</IonLabel>
           </IonTabButton>
         ))}
-      </IonTabBar>
+      </TabBar>
     </IonTabs>
   );
 }

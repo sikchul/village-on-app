@@ -1,5 +1,5 @@
 import { DefaultContentLayout } from '@app/layout';
-import { HomeExtraContent } from '@features/home/ui';
+import { HomeExtraContent, HomeList } from '@features/home/ui';
 import { IonPage } from '@ionic/react';
 import { Content } from '@shared/ui/content';
 import { Header, Toolbar } from '@shared/ui/toolbar';
@@ -17,32 +17,7 @@ export default function Home({}: HomeProps) {
       </Header>
       <Content>
         <DefaultContentLayout extraContent={<HomeExtraContent />}>
-          <div>
-            <div
-              style={{
-                padding: '16px',
-                marginBottom: '40px',
-                paddingTop: '40px'
-              }}
-            >
-              Home
-            </div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px', marginBottom: '40px' }}>Home</div>
-            <div style={{ padding: '16px' }}>Home</div>
-          </div>
+          <HomeList />
         </DefaultContentLayout>
       </Content>
     </IonPage>

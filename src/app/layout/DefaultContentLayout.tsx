@@ -11,7 +11,7 @@ interface DefaultContentLayoutProps extends DefaultComponentProps {
 
 const SCROLL_TOP_OFFSET = {
   DEFAULT: 180,
-  SCROLL: 60
+  SCROLL: 40
 };
 
 export default function DefaultContentLayout({
@@ -23,7 +23,7 @@ export default function DefaultContentLayout({
 
   const handleScroll = (event: Event) => {
     if (gridRef.current) {
-      if ((event.target as HTMLIonRowElement).scrollTop > 40) {
+      if ((event.target as HTMLIonRowElement).scrollTop > 10) {
         gridRef.current.style.top = `${SCROLL_TOP_OFFSET.SCROLL}px`;
       } else {
         gridRef.current.style.top = `${SCROLL_TOP_OFFSET.DEFAULT}px`;
@@ -33,7 +33,9 @@ export default function DefaultContentLayout({
 
   useEffect(() => {
     const contentRow = contentRowRef.current;
-    if (contentRow) {
+    const contentGrid = gridRef.current;
+
+    if (contentRow && contentGrid) {
       contentRow.addEventListener('scroll', handleScroll, { passive: true });
       return () => {
         contentRow.removeEventListener('scroll', handleScroll);

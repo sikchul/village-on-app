@@ -7,6 +7,8 @@ import styles from './DefaultContentLayout.module.scss';
 
 interface DefaultContentLayoutProps extends DefaultComponentProps {
   extraContent?: ReactNode;
+  defaultOffset?: number;
+  defaultScrollOffset?: number;
 }
 
 const SCROLL_TOP_OFFSET = {
@@ -16,7 +18,9 @@ const SCROLL_TOP_OFFSET = {
 
 export default function DefaultContentLayout({
   children,
-  extraContent
+  extraContent,
+  defaultOffset = SCROLL_TOP_OFFSET.DEFAULT,
+  defaultScrollOffset = SCROLL_TOP_OFFSET.SCROLL
 }: DefaultContentLayoutProps) {
   const gridRef = useRef<HTMLIonGridElement>(null);
   const contentRowRef = useRef<HTMLIonRowElement>(null);
@@ -24,9 +28,9 @@ export default function DefaultContentLayout({
   const handleScroll = (event: Event) => {
     if (gridRef.current) {
       if ((event.target as HTMLIonRowElement).scrollTop > 10) {
-        gridRef.current.style.top = `${SCROLL_TOP_OFFSET.SCROLL}px`;
+        gridRef.current.style.top = `${defaultScrollOffset}px`;
       } else {
-        gridRef.current.style.top = `${SCROLL_TOP_OFFSET.DEFAULT}px`;
+        gridRef.current.style.top = `${defaultOffset}px`;
       }
     }
   };
@@ -46,7 +50,7 @@ export default function DefaultContentLayout({
   return (
     <Grid
       ref={gridRef}
-      style={{ top: `${SCROLL_TOP_OFFSET.DEFAULT}px` }}
+      style={{ top: `${defaultOffset}px` }}
       className={styles['default-content-layout']}
     >
       {extraContent && (

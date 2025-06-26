@@ -1,6 +1,8 @@
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import HomeBase from '@pages/HomeBase';
+import Reviews from '@pages/Reviews';
+import Villages from '@pages/Villages';
 import { ROUTE_PATH } from '@shared/constants/route';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -56,6 +58,8 @@ export default function App() {
           <IonRouterOutlet>
             <Route exact path={ROUTE_PATH.ROOT} render={() => <Redirect to={ROUTE_PATH.HOME} />} />
             <Route exact path={ROUTE_PATH.HOME} component={HomeBase} />
+            <Route exact path={ROUTE_PATH.VILLAGES} component={Villages} />
+            <Route exact path={ROUTE_PATH.REVIEWS} component={Reviews} />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>

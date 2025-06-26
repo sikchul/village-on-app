@@ -56,7 +56,7 @@ export default function VillageCard({ className, village, index = 0 }: VillageCa
           const colors = ['primary', 'success', 'danger'] as const;
           const color = colors[index % colors.length];
           return (
-            <Chip key={se} outline={false} color={color}>
+            <Chip key={`${se}-${index}`} outline={false} color={color}>
               {se}
             </Chip>
           );

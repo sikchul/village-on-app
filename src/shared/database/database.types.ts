@@ -113,6 +113,18 @@ export type Database = {
         }
         Relationships: []
       }
+      get_village_location_list: {
+        Row: {
+          institution_nm: string | null
+        }
+        Relationships: []
+      }
+      get_village_type_list: {
+        Row: {
+          type_name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

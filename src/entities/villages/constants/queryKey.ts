@@ -1,3 +1,9 @@
+import type { VillageListRequestParams } from '../types';
+
 export const VillageQueryKey = {
-  fetchHomeVillageList: ['fetchHomeVillageList'] as const
+  fetchHomeVillageList: ['fetchHomeVillageList'] as const,
+  fetchVillageTypeList: ['fetchVillageTypeList'] as const,
+  fetchVillageLocationList: ['fetchVillageLocationList'] as const,
+  fetchVillageList: (params: Omit<VillageListRequestParams, 'page'>) =>
+    ['fetchVillageList', params.location, params.type] as const
 };

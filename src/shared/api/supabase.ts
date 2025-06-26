@@ -13,6 +13,14 @@ export type Database = MergeDeep<
         get_home_village_list: {
           Row: SetNonNullable<SupabaseDatabase['public']['Views']['get_home_village_list']['Row']>;
         };
+        get_village_type_list: {
+          Row: SetNonNullable<SupabaseDatabase['public']['Views']['get_village_type_list']['Row']>;
+        };
+        get_village_location_list: {
+          Row: SetNonNullable<
+            SupabaseDatabase['public']['Views']['get_village_location_list']['Row']
+          >;
+        };
       };
     };
   }

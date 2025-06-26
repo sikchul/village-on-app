@@ -1,7 +1,8 @@
 import { IonRow } from '@ionic/react';
 import type { DefaultComponentProps } from '@shared/types/props';
 import { Col, Grid } from '@shared/ui/grid';
-import { useEffect, useRef, type ReactNode } from 'react';
+import cn from 'classnames';
+import { useCallback, useEffect, useRef, type ReactNode } from 'react';
 
 import styles from './DefaultContentLayout.module.scss';
 
@@ -17,6 +18,7 @@ const SCROLL_TOP_OFFSET = {
 };
 
 export default function DefaultContentLayout({
+  className,
   children,
   extraContent,
   defaultOffset = SCROLL_TOP_OFFSET.DEFAULT,
@@ -25,15 +27,18 @@ export default function DefaultContentLayout({
   const gridRef = useRef<HTMLIonGridElement>(null);
   const contentRowRef = useRef<HTMLIonRowElement>(null);
 
-  const handleScroll = (event: Event) => {
-    if (gridRef.current) {
-      if ((event.target as HTMLIonRowElement).scrollTop > 10) {
-        gridRef.current.style.top = `${defaultScrollOffset}px`;
-      } else {
-        gridRef.current.style.top = `${defaultOffset}px`;
+  const handleScroll = useCallback(
+    (event: Event) => {
+      if (gridRef.current) {
+        if ((event.target as HTMLIonRowElement).scrollTop > 10) {
+          gridRef.current.style.top = `${defaultScrollOffset}px`;
+        } else {
+          gridRef.current.style.top = `${defaultOffset}px`;
+        }
       }
-    }
-  };
+    },
+    [defaultScrollOffset, defaultOffset]
+  );
 
   useEffect(() => {
     const contentRow = contentRowRef.current;
@@ -45,20 +50,20 @@ export default function DefaultContentLayout({
         contentRow.removeEventListener('scroll', handleScroll);
       };
     }
-  }, []);
+  }, [handleScroll]);
 
   return (
     <Grid
       ref={gridRef}
       style={{ top: `${defaultOffset}px` }}
-      className={styles['default-content-layout']}
+      className={cn(styles['default-content-layout'], className)}
     >
       {extraContent && (
         <IonRow>
           <Col>{extraContent}</Col>
         </IonRow>
       )}
-      <IonRow ref={contentRowRef} className={styles['content-row']}>
+      <IonRow ref={contentRowRef} className={cn(styles['content-row'])}>
         <Col size="12">{children}</Col>
       </IonRow>
     </Grid>

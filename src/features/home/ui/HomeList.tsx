@@ -1,5 +1,6 @@
 import { useFetchHomeVillageList } from '@entities/villages/hooks';
 import { VillageCard } from '@features/villages/ui';
+import { IonListHeader } from '@ionic/react';
 import { type DefaultComponentProps } from '@shared/types/props';
 import { Item } from '@shared/ui/item';
 import { List } from '@shared/ui/list';
@@ -13,6 +14,7 @@ export default function HomeList({ className }: HomeListProps) {
   const { data: villages = [] } = useFetchHomeVillageList();
   return (
     <List lines="none" className={cn(styles['home-list'], className)}>
+      <IonListHeader className={styles['list-header']}>Recommendation</IonListHeader>
       {villages.map((village, index) => (
         <Item key={village.village_id}>
           <VillageCard village={village} index={index} />

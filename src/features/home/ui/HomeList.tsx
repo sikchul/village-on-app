@@ -13,9 +13,9 @@ export default function HomeList({ className }: HomeListProps) {
   const { data: villages = [] } = useFetchHomeVillageList();
   return (
     <List lines="none" className={cn(styles['home-list'], className)}>
-      {villages.map((village) => (
+      {villages.map((village, index) => (
         <Item key={village.village_id}>
-          <VillageCard village={village} />
+          <VillageCard village={village} index={index} />
         </Item>
       ))}
     </List>

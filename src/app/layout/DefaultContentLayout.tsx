@@ -26,9 +26,12 @@ export default function DefaultContentLayout({
 }: DefaultContentLayoutProps) {
   const gridRef = useRef<HTMLIonGridElement>(null);
   const contentRowRef = useRef<HTMLIonRowElement>(null);
+  const lockRef = useRef(false);
 
   const handleScroll = useCallback(
     (event: Event) => {
+      if (lockRef.current) return;
+
       if (gridRef.current) {
         if ((event.target as HTMLIonRowElement).scrollTop > 10) {
           gridRef.current.style.top = `${defaultScrollOffset}px`;
@@ -40,17 +43,29 @@ export default function DefaultContentLayout({
     [defaultScrollOffset, defaultOffset]
   );
 
+  const handleTransitionEnd = useCallback(() => {
+    lockRef.current = false;
+  }, []);
+
+  const handleTransitionStart = useCallback(() => {
+    lockRef.current = true;
+  }, []);
+
   useEffect(() => {
     const contentRow = contentRowRef.current;
     const contentGrid = gridRef.current;
 
     if (contentRow && contentGrid) {
       contentRow.addEventListener('scroll', handleScroll, { passive: true });
+      contentGrid.addEventListener('transitionend', handleTransitionEnd, { passive: true });
+      contentGrid.addEventListener('transitionstart', handleTransitionStart, { passive: true });
       return () => {
         contentRow.removeEventListener('scroll', handleScroll);
+        contentGrid.removeEventListener('transitionend', handleTransitionEnd);
+        contentGrid.removeEventListener('transitionstart', handleTransitionStart);
       };
     }
-  }, [handleScroll]);
+  }, [handleScroll, handleTransitionEnd, handleTransitionStart]);
 
   return (
     <Grid

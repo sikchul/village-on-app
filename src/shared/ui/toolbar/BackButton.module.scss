@@ -1,0 +1,9 @@
+.back-button {
+    ion-back-button {
+        --border-radius: 50%;
+        --background: #ffffff;
+        --icon-font-size: 1rem;
+        min-width: 28px;
+        min-height: 28px;
+      }
+}

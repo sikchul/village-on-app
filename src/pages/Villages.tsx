@@ -8,7 +8,7 @@ import { ROUTE_PATH } from '@shared/constants/route';
 import { useModal } from '@shared/hooks';
 import { Content } from '@shared/ui/content';
 import { Header, Toolbar } from '@shared/ui/toolbar';
-import { chevronBackOutline } from 'ionicons/icons';
+import { chevronBackOutline, filterOutline } from 'ionicons/icons';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useHistory, useLocation, type RouteComponentProps } from 'react-router-dom';
@@ -138,7 +138,7 @@ export default function Villages({}: VillagesProps) {
       <Header>
         <Toolbar>
           <ToolbarBackButton icon={chevronBackOutline} defaultHref={ROUTE_PATH.HOME} />
-          <ToolbarButton onClick={handleFilter} />
+          <ToolbarButton icon={filterOutline} onClick={handleFilter} />
         </Toolbar>
       </Header>
       <Content>

@@ -1,5 +1,6 @@
 import { IonCardSubtitle, IonCardTitle, IonIcon, IonRow, IonText } from '@ionic/react';
 import type { Village } from '@shared/api/supabase';
+import { ROUTE_PATH } from '@shared/constants/route';
 import { type DefaultComponentProps } from '@shared/types/props';
 import { Card, CardContent, CardHeader } from '@shared/ui/card';
 import { Chip } from '@shared/ui/chip';
@@ -7,6 +8,7 @@ import { Col, Grid } from '@shared/ui/grid';
 import cn from 'classnames';
 import { locationOutline } from 'ionicons/icons';
 import { useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import styles from './VillageCard.module.scss';
 
@@ -16,7 +18,8 @@ interface VillageCardProps extends DefaultComponentProps {
 }
 
 export default function VillageCard({ className, village, index = 0 }: VillageCardProps) {
-  const { exprn_village_nm, rdnmadr, exprn_se } = village;
+  const history = useHistory();
+  const { exprn_village_nm, rdnmadr, exprn_se, village_id } = village;
   const exprnSeList = useMemo(() => {
     const items = exprn_se.split('+');
     return items.sort((a, b) => {
@@ -32,7 +35,12 @@ export default function VillageCard({ className, village, index = 0 }: VillageCa
   }, [index]);
 
   return (
-    <Card className={cn(styles['village-card'], className)}>
+    <Card
+      className={cn(styles['village-card'], className)}
+      onClick={() => {
+        history.push(`${ROUTE_PATH.VILLAGES}/${village_id}`);
+      }}
+    >
       <img alt="card-background" src={backgroundImage} />
       <CardHeader>
         <IonCardTitle className={styles['card-title']}>{exprn_village_nm}</IonCardTitle>

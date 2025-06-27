@@ -26,10 +26,10 @@ export const getVillageList = async (params: VillageListRequestParams) => {
   const from = page * LIST_ITEM_PER_PAGE;
   const to = from + LIST_ITEM_PER_PAGE - 1;
 
-  let query = supabase.from('villages').select('*');
+  let query = supabase.from('villages').select('*', { count: 'exact' });
 
   if (type) {
-    query = query.contains('exprn_se', type);
+    query = query.ilike('exprn_se', `%${type}%`);
   }
 
   if (location) {

@@ -1,0 +1,10 @@
+.toolbar-button {
+  margin: 0;
+  margin-inline-end: 8px;
+  --background: #ffffff;
+  --color: var(--ion-text-color);
+
+  .toolbar-button-icon {
+    font-size: 1rem;
+  }
+}

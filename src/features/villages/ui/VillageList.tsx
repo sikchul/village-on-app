@@ -9,14 +9,13 @@ import styles from './VillageList.module.scss';
 
 interface VillageListProps extends DefaultComponentProps {
   villages: Village[];
-  totalCountText: string;
   inViewRef: (node?: Element | null) => void;
 }
 
-export default function VillageList({ className, villages, totalCountText, inViewRef }: VillageListProps) {
+export default function VillageList({ className, villages, inViewRef }: VillageListProps) {
   return (
     <List lines="none" className={cn(styles['village-list'], className)}>
-      <ListHeader>{totalCountText}</ListHeader>
+      <ListHeader>{'체험휴양마을'}</ListHeader>
       {villages.map((village, index) => (
         <Item key={village.village_id} ref={inViewRef}>
           <VillageCard village={village} index={index} />

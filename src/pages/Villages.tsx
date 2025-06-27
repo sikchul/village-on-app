@@ -1,24 +1,30 @@
 import { DefaultContentLayout } from '@app/layout';
+import { ToolbarBackButton, ToolbarButton } from '@app/toolbar';
 import { useFetchVillageList } from '@entities/villages/hooks/useFetchVillageList';
-import { VillageList } from '@features/villages/ui';
+import { VillageFilterModal, VillageList } from '@features/villages/ui';
+import type { FilterParams } from '@features/villages/ui/VillageFilterModal';
 import { IonPage } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
+import { useModal } from '@shared/hooks';
 import { Content } from '@shared/ui/content';
 import { Header, Toolbar } from '@shared/ui/toolbar';
 import { chevronBackOutline } from 'ionicons/icons';
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useLocation, type RouteComponentProps } from 'react-router-dom';
+import { useHistory, useLocation, type RouteComponentProps } from 'react-router-dom';
 
 import styles from './Villages.module.scss';
-import { ToolbarBackButton } from '@app/toolbar';
 
 interface VillagesProps extends RouteComponentProps {}
 
 export default function Villages({}: VillagesProps) {
-  const triggetRef = useRef(false);
-  const { search } = useLocation();
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.8
+  });
 
+  const triggetRef = useRef(false);
+  const { replace } = useHistory();
+  const { search, pathname } = useLocation();
   const query = useMemo(() => new URLSearchParams(search), [search]);
 
   const searchParams = useMemo(() => {
@@ -44,16 +50,37 @@ export default function Villages({}: VillagesProps) {
     [villages]
   );
 
-  const totalCountText = useMemo(() => {
-    if (villages?.pages[0]?.totalCount) {
-      return `총 ${villages?.pages[0]?.totalCount}개의 마을`;
-    }
-    return '마을을 찾을 수 없습니다';
-  }, [villages]);
+  const { present: presentFilterModal, dismiss: dismissFilterModal } = useModal(
+    VillageFilterModal,
+    {
+      location: (query.get('location') as string) || '',
+      type: (query.get('type') as string) || '',
+      onDismiss: ({ location, type }: FilterParams) => {
+        const params = new URLSearchParams();
 
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.8
-  });
+        if (location) {
+          params.append('location', location);
+        }
+        if (type) {
+          params.append('type', type);
+        }
+
+        replace({
+          pathname,
+          search: params.toString()
+        });
+        dismissFilterModal();
+      }
+    }
+  );
+
+  const handleFilter = useCallback(() => {
+    presentFilterModal({
+      breakpoints: [0, 0.35],
+      initialBreakpoint: 0.35,
+      backdropBreakpoint: 0
+    });
+  }, [presentFilterModal]);
 
   useEffect(() => {
     if (!inView) {
@@ -68,19 +95,20 @@ export default function Villages({}: VillagesProps) {
   }, [inView, isFetchingNextPage, hasNextPage, fetchNextPage]);
 
   return (
-    <IonPage className={styles['villages-page']}> 
+    <IonPage className={styles['villages-page']}>
       <Header>
         <Toolbar>
           <ToolbarBackButton icon={chevronBackOutline} defaultHref={ROUTE_PATH.HOME} />
+          <ToolbarButton onClick={handleFilter} />
         </Toolbar>
       </Header>
       <Content>
         <DefaultContentLayout
-          extraContent={<div>extra</div>}
+          extraContent={<div></div>}
           defaultOffset={236}
           defaultScrollOffset={80}
         >
-          <VillageList villages={villageItems} inViewRef={inViewRef} totalCountText={totalCountText} />
+          <VillageList villages={villageItems} inViewRef={inViewRef} />
         </DefaultContentLayout>
       </Content>
     </IonPage>

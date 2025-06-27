@@ -13,7 +13,7 @@ export default function HomeList({ className }: HomeListProps) {
   const { data: villages = [] } = useFetchHomeVillageList();
   return (
     <List lines="none" className={cn(styles['home-list'], className)}>
-      <ListHeader>{'Recommendation'}</ListHeader>
+      <ListHeader>{'추천 체험휴양마을'}</ListHeader>
       {villages.map((village, index) => (
         <Item key={village.village_id}>
           <VillageCard village={village} index={index} />

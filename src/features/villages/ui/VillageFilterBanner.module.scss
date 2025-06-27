@@ -1,0 +1,24 @@
+.village-filter-banner {
+  background-image: url('/filter-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100%;
+  border-radius: 16px;
+
+  .filter-banner-title {
+    --color: rgb(48, 53, 26);
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .filter-banner-chip {
+    --background: rgba(58, 66, 38);
+    --color: #ffffff;
+
+    .filter-banner-chip-icon {
+      color: #ffffff;
+    }
+  }
+}

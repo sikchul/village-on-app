@@ -35,7 +35,7 @@ export default function VillageCard({ className, village, index = 0 }: VillageCa
     <Card className={cn(styles['village-card'], className)}>
       <img alt="card-background" src={backgroundImage} />
       <CardHeader>
-        <IonCardTitle>{exprn_village_nm}</IonCardTitle>
+        <IonCardTitle className={styles['card-title']}>{exprn_village_nm}</IonCardTitle>
         <IonCardSubtitle>
           <Grid>
             <IonRow className="ion-align-items-center">

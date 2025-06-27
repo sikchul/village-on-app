@@ -50,6 +50,45 @@ export default function Villages({}: VillagesProps) {
     [villages]
   );
 
+  const totalCount = useMemo(() => villages?.pages[0]?.totalCount ?? 0, [villages]);
+
+  const filterArray = useMemo(() => {
+    const list: { label: string; value: string; onRemove: () => void }[] = [];
+    if (query.get('location')) {
+      list.push({
+        label: '지역',
+        value: query.get('location') || '',
+        onRemove: () => {
+          const params = new URLSearchParams();
+          if (query.get('type')) {
+            params.append('type', query.get('type') as string);
+          }
+          replace({
+            pathname,
+            search: params.toString()
+          });
+        }
+      });
+    }
+    if (query.get('type')) {
+      list.push({
+        label: '분야',
+        value: query.get('type') || '',
+        onRemove: () => {
+          const params = new URLSearchParams();
+          if (query.get('location')) {
+            params.append('location', query.get('location') as string);
+          }
+          replace({
+            pathname,
+            search: params.toString()
+          });
+        }
+      });
+    }
+    return list;
+  }, [query, replace, pathname]);
+
   const { present: presentFilterModal, dismiss: dismissFilterModal } = useModal(
     VillageFilterModal,
     {
@@ -103,12 +142,13 @@ export default function Villages({}: VillagesProps) {
         </Toolbar>
       </Header>
       <Content>
-        <DefaultContentLayout
-          extraContent={<div></div>}
-          defaultOffset={236}
-          defaultScrollOffset={80}
-        >
-          <VillageList villages={villageItems} inViewRef={inViewRef} />
+        <DefaultContentLayout defaultOffset={236} defaultScrollOffset={80}>
+          <VillageList
+            villages={villageItems}
+            inViewRef={inViewRef}
+            totalCount={totalCount}
+            filterArray={filterArray}
+          />
         </DefaultContentLayout>
       </Content>
     </IonPage>

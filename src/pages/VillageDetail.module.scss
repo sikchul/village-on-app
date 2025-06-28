@@ -1,6 +1,14 @@
 .village-detail-page {
   background-image: url('/village-detail-bg.png');
-  background-size: contain;
+  background-size: 100%;
   background-position: 0 -136px;
   background-repeat: no-repeat;
+
+  .village-detail-layout {
+    padding: 24px 16px;
+
+    .village-detail-row {
+      margin-bottom: 16px;
+    }
+  }
 }

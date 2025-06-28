@@ -1,0 +1,25 @@
+.village-detail-footer {
+  padding: 16px 16px 24px 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top: 1px solid rgb(241, 241, 241);
+
+  .village-detail-footer-col {
+    display: flex;
+    .village-detail-footer-call-button {
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      width: 100%;
+      --background: #677e32;
+      --color: #ffffff;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .village-detail-footer-images-button {
+      --background: #677e32;
+    }
+  }
+}

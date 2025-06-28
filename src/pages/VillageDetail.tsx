@@ -1,35 +1,69 @@
 import { DefaultContentLayout } from '@app/layout';
 import { ToolbarBackButton, ToolbarButton } from '@app/toolbar';
-import { IonPage } from '@ionic/react';
+import { useFetchVillageDetail } from '@entities/villages/hooks';
+import { VillageDetailBody, VillageDetailHeader } from '@features/villages/ui/detail';
+import { IonPage, IonRow } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
 import { Content } from '@shared/ui/content';
+import { Col, Grid } from '@shared/ui/grid';
 import { Header, Toolbar } from '@shared/ui/toolbar';
-import { callOutline, chevronBackOutline } from 'ionicons/icons';
+import { chevronBackOutline, locationOutline } from 'ionicons/icons';
 import { useCallback } from 'react';
-import { useParams, type RouteComponentProps } from 'react-router-dom';
+import { type RouteComponentProps } from 'react-router-dom';
 
 import styles from './VillageDetail.module.scss';
 
-interface VillageDetailProps extends RouteComponentProps {}
+interface VillageDetailProps extends RouteComponentProps<{ id: string }> {}
 
-export default function VillageDetail({}: VillageDetailProps) {
-  const { id } = useParams<{ id: string }>();
+export default function VillageDetail({ match }: VillageDetailProps) {
+  const { id } = match.params;
+  const { data: villageDetail } = useFetchVillageDetail({ id: Number(id) });
+  const {
+    exprn_village_nm,
+    rdnmadr,
+    likes = 0,
+    rprsntv_nm,
+    phone_number,
+    exprn_cn,
+    latitude,
+    longitude
+  } = villageDetail || {};
 
-  const handleCall = useCallback(() => {
-    console.log('call', id);
-  }, [id]);
+  const handleMap = useCallback(() => {
+    console.log('latitude', latitude);
+    console.log('longitude', longitude);
+  }, [latitude, longitude]);
 
   return (
     <IonPage className={styles['village-detail-page']}>
       <Header>
         <Toolbar>
           <ToolbarBackButton icon={chevronBackOutline} defaultHref={ROUTE_PATH.HOME} />
-          <ToolbarButton icon={callOutline} onClick={handleCall} />
+          <ToolbarButton icon={locationOutline} onClick={handleMap} />
         </Toolbar>
       </Header>
       <Content>
         <DefaultContentLayout defaultOffset={236} defaultScrollOffset={80}>
-          <div>TEST</div>
+          <Grid className={styles['village-detail-layout']}>
+            <IonRow className={styles['village-detail-row']}>
+              <Col>
+                <VillageDetailHeader
+                  exprn_village_nm={exprn_village_nm || '-'}
+                  rdnmadr={rdnmadr || '-'}
+                  likes={likes}
+                />
+              </Col>
+            </IonRow>
+            <IonRow className={styles['village-detail-row']}>
+              <Col>
+                <VillageDetailBody
+                  rprsntv_nm={rprsntv_nm || '-'}
+                  phone_number={phone_number || '-'}
+                  exprn_cn={exprn_cn || '-'}
+                />
+              </Col>
+            </IonRow>
+          </Grid>
         </DefaultContentLayout>
       </Content>
     </IonPage>

@@ -1,7 +1,7 @@
 import { supabase } from '@shared/api/supabase';
 import { LIST_ITEM_PER_PAGE } from '@shared/constants/app';
 
-import type { VillageListRequestParams } from './types';
+import type { VillageDetailRequestParams, VillageListRequestParams } from './types';
 
 export const getHomeVillageList = async () => {
   const { data, error } = await supabase.from('get_home_village_list').select('*');
@@ -44,4 +44,11 @@ export const getVillageList = async (params: VillageListRequestParams) => {
     items: data,
     totalCount: count ?? 0
   };
+};
+
+export const getVillageDetail = async (params: VillageDetailRequestParams) => {
+  const { id } = params;
+  const { data, error } = await supabase.from('villages').select('*').eq('village_id', id);
+  if (error) throw new Error(error.message);
+  return data?.[0] || null;
 };

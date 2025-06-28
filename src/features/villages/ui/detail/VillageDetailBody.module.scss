@@ -1,0 +1,13 @@
+.village-detail-body {
+  margin-bottom: 64px;
+  .village-detail-info-row {
+    margin-bottom: 8px;
+    .village-detail-info-title {
+      display: block;
+      margin-left: 4px;
+      --color: rgb(48, 53, 26);
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.village-detail-header {
+  padding-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgb(241, 241, 241);
+
+  .village-detail-header-left-row {
+    gap: 8px;
+  }
+
+  .village-detail-header-title {
+    margin-left: 4px;
+    --color: rgb(48, 53, 26);
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .village-detail-header-description {
+    display: flex;
+    align-items: center;
+    color: #737373;
+    font-size: 1rem;
+
+    ion-icon {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import HomeBase from '@pages/HomeBase';
+import Login from '@pages/Login';
+import Profile from '@pages/Profile';
 import Reviews from '@pages/Reviews';
 import VillageDetail from '@pages/VillageDetail';
 import Villages from '@pages/Villages';
@@ -38,6 +40,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import AuthProvider from './app/provider/AuthProvider';
 
 setupIonicReact();
 
@@ -56,13 +59,21 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <IonApp>
         <IonReactRouter>
-          <IonRouterOutlet>
-            <Route exact path={ROUTE_PATH.ROOT} render={() => <Redirect to={ROUTE_PATH.HOME} />} />
-            <Route exact path={ROUTE_PATH.HOME} component={HomeBase} />
-            <Route exact path={ROUTE_PATH.VILLAGES} component={Villages} />
-            <Route exact path={ROUTE_PATH.VILLAGE_DETAIL} component={VillageDetail} />
-            <Route exact path={ROUTE_PATH.REVIEWS} component={Reviews} />
-          </IonRouterOutlet>
+          <AuthProvider>
+            <IonRouterOutlet>
+              <Route
+                exact
+                path={ROUTE_PATH.ROOT}
+                render={() => <Redirect to={ROUTE_PATH.HOME} />}
+              />
+              <Route exact path={ROUTE_PATH.HOME} component={HomeBase} />
+              <Route exact path={ROUTE_PATH.VILLAGES} component={Villages} />
+              <Route exact path={ROUTE_PATH.VILLAGE_DETAIL} component={VillageDetail} />
+              <Route exact path={ROUTE_PATH.REVIEWS} component={Reviews} />
+              <Route exact path={ROUTE_PATH.LOGIN} component={Login} />
+              <Route exact path={ROUTE_PATH.PROFILE} component={Profile} />
+            </IonRouterOutlet>
+          </AuthProvider>
         </IonReactRouter>
       </IonApp>
       <ReactQueryDevtools initialIsOpen={false} />

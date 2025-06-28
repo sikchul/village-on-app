@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { SetNonNullable, MergeDeep } from 'type-fest';
 
 export type Village = Tables<'villages'>;
+export type Profile = Tables<'profiles'>;
 
 export type Database = MergeDeep<
   SupabaseDatabase,

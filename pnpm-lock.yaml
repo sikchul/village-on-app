@@ -26,6 +26,9 @@ importers:
       '@capacitor/keyboard':
         specifier: 7.0.1
         version: 7.0.1(@capacitor/core@7.4.0)
+      '@capacitor/preferences':
+        specifier: ^7.0.1
+        version: 7.0.1(@capacitor/core@7.4.0)
       '@capacitor/status-bar':
         specifier: 7.0.1
         version: 7.0.1(@capacitor/core@7.4.0)
@@ -47,6 +50,9 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
+      capacitor-kakao-login-plugin:
+        specifier: ^3.0.0
+        version: 3.0.0(@capacitor/core@7.4.0)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -714,6 +720,11 @@ packages:
 
   '@capacitor/keyboard@7.0.1':
     resolution: {integrity: sha512-Gi064vOARMac+x9/DmEFeywN9oAETMf3OYsMuYm9gA8SvdsDJ3QJqMoFnSEIORYXe21Jzt2SIEdLlpT65P/b2g==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/preferences@7.0.1':
+    resolution: {integrity: sha512-XF9jOHzvoIBZLwZr/EX6aVaUO1d8Mx7TwBLQS33pYHOliCW5knT5KUkFOXNNYxh9qqODYesee9xuQIKNJpQBag==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
@@ -2126,6 +2137,11 @@ packages:
 
   caniuse-lite@1.0.30001724:
     resolution: {integrity: sha512-WqJo7p0TbHDOythNTqYujmaJTvtYRZrjpP8TCvH6Vb9CYJerJNKamKzIWOM4BkQatWj9H2lYulpdAQNBe7QhNA==}
+
+  capacitor-kakao-login-plugin@3.0.0:
+    resolution: {integrity: sha512-T+4hFpqCCtYR9XfltodO6b9H6pLI37AheUvvWVW5ag19MMz/LFPQpX1yA5M24fOg4hsgKfhf91aRi00+iNFVJg==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -5092,6 +5108,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.4.0
 
+  '@capacitor/preferences@7.0.1(@capacitor/core@7.4.0)':
+    dependencies:
+      '@capacitor/core': 7.4.0
+
   '@capacitor/status-bar@7.0.1(@capacitor/core@7.4.0)':
     dependencies:
       '@capacitor/core': 7.4.0
@@ -6409,6 +6429,10 @@ snapshots:
   callsites@3.1.0: {}
 
   caniuse-lite@1.0.30001724: {}
+
+  capacitor-kakao-login-plugin@3.0.0(@capacitor/core@7.4.0):
+    dependencies:
+      '@capacitor/core': 7.4.0
 
   caseless@0.12.0: {}
 

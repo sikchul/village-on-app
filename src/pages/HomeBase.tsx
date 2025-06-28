@@ -1,3 +1,4 @@
+import { useAuth } from '@app/provider/AuthProvider';
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabButton, IonTabs } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
 import { TabBar } from '@shared/ui/tabs';
@@ -34,14 +35,21 @@ const TAB_BUTTONS = [
 ];
 
 export default function HomeBase({ match, history }: HomeBaseProps) {
+  const { isAuthenticated, user } = useAuth();
   const tabButtons = useMemo(() => {
     return TAB_BUTTONS.map((item) => {
+      let path = item.path;
+      if (item.label === '프로필') {
+        path = isAuthenticated && user ? ROUTE_PATH.PROFILE : ROUTE_PATH.LOGIN;
+      }
+
       return {
         ...item,
+        path,
         selected: match.url === `${match.url}${item.path}`
       };
     });
-  }, [match.url]);
+  }, [match.url, isAuthenticated, user]);
 
   return (
     <IonTabs>

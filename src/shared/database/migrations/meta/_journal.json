@@ -15,6 +15,13 @@
       "when": 1750599075198,
       "tag": "0001_absent_the_renegades",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1751129066141,
+      "tag": "0002_sturdy_bloodstorm",
+      "breakpoints": true
     }
   ]
 }

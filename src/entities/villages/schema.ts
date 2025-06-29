@@ -2,7 +2,8 @@
  * 마을 정보
  */
 
-import { bigint, integer, pgTable, text, uniqueIndex } from 'drizzle-orm/pg-core';
+import { profiles } from '@entities/profiles/schema';
+import { bigint, integer, pgTable, primaryKey, text, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 export const villages = pgTable(
   'villages',
@@ -33,4 +34,15 @@ export const villages = pgTable(
   (table) => [
     uniqueIndex('unique_village').on(table.exprn_village_nm, table.ctprvn_nm, table.signgu_nm)
   ]
+);
+
+export const villages_likes = pgTable(
+  'villages_likes',
+  {
+    village_id: bigint({ mode: 'number' }).references(() => villages.village_id, {
+      onDelete: 'cascade'
+    }),
+    profile_id: uuid().references(() => profiles.profile_id, { onDelete: 'cascade' })
+  },
+  (table) => [primaryKey({ columns: [table.village_id, table.profile_id] })]
 );

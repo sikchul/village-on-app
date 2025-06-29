@@ -111,6 +111,50 @@ export type Database = {
         }
         Relationships: []
       }
+      villages_likes: {
+        Row: {
+          profile_id: string
+          village_id: number
+        }
+        Insert: {
+          profile_id: string
+          village_id: number
+        }
+        Update: {
+          profile_id?: string
+          village_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "villages_likes_profile_id_profiles_profile_id_fk"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "villages_likes_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_home_village_list"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "villages_likes_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_village_detail_view"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "villages_likes_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "villages"
+            referencedColumns: ["village_id"]
+          },
+        ]
+      }
     }
     Views: {
       get_home_village_list: {
@@ -137,6 +181,84 @@ export type Database = {
           rprsntv_nm: string | null
           signgu_nm: string | null
           village_id: number | null
+        }
+        Relationships: []
+      }
+      get_village_detail_view: {
+        Row: {
+          appn_date: string | null
+          ctprvn_nm: string | null
+          exprn_ar: string | null
+          exprn_cn: string | null
+          exprn_pic_url: string | null
+          exprn_se: string | null
+          exprn_village_nm: string | null
+          hold_fclty: string | null
+          homepage_url: string | null
+          institution_nm: string | null
+          instt_code: string | null
+          instt_nm: string | null
+          is_liked: boolean | null
+          latitude: string | null
+          likes: number | null
+          lnmadr: string | null
+          longitude: string | null
+          phone_number: string | null
+          rdnmadr: string | null
+          reference_date: string | null
+          rprsntv_nm: string | null
+          signgu_nm: string | null
+          village_id: number | null
+        }
+        Insert: {
+          appn_date?: string | null
+          ctprvn_nm?: string | null
+          exprn_ar?: string | null
+          exprn_cn?: string | null
+          exprn_pic_url?: string | null
+          exprn_se?: string | null
+          exprn_village_nm?: string | null
+          hold_fclty?: string | null
+          homepage_url?: string | null
+          institution_nm?: string | null
+          instt_code?: string | null
+          instt_nm?: string | null
+          is_liked?: never
+          latitude?: string | null
+          likes?: number | null
+          lnmadr?: string | null
+          longitude?: string | null
+          phone_number?: string | null
+          rdnmadr?: string | null
+          reference_date?: string | null
+          rprsntv_nm?: string | null
+          signgu_nm?: string | null
+          village_id?: number | null
+        }
+        Update: {
+          appn_date?: string | null
+          ctprvn_nm?: string | null
+          exprn_ar?: string | null
+          exprn_cn?: string | null
+          exprn_pic_url?: string | null
+          exprn_se?: string | null
+          exprn_village_nm?: string | null
+          hold_fclty?: string | null
+          homepage_url?: string | null
+          institution_nm?: string | null
+          instt_code?: string | null
+          instt_nm?: string | null
+          is_liked?: never
+          latitude?: string | null
+          likes?: number | null
+          lnmadr?: string | null
+          longitude?: string | null
+          phone_number?: string | null
+          rdnmadr?: string | null
+          reference_date?: string | null
+          rprsntv_nm?: string | null
+          signgu_nm?: string | null
+          village_id?: number | null
         }
         Relationships: []
       }

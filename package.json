@@ -16,7 +16,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:typegen": "dotenv -e .env -- bash -c 'supabase gen types typescript --project-id $VITE_SUPABASE_PROJECT_ID > ./src/shared/database/database.types.ts'",
     "add:android": "exec cap add android",
-    "build:android": "pnpm run build && exec cap copy android && exec cap sync android",
+    "build:android": "pnpm run build && (exec cap copy android & exec cap sync android)",
     "run:android": "exec cap open android"
   },
   "dependencies": {

@@ -22,6 +22,11 @@ export type Database = MergeDeep<
             SupabaseDatabase['public']['Views']['get_village_location_list']['Row']
           >;
         };
+        get_village_detail_view: {
+          Row: SetNonNullable<
+            SupabaseDatabase['public']['Views']['get_village_detail_view']['Row']
+          >;
+        };
       };
     };
   }

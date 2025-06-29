@@ -48,7 +48,10 @@ export const getVillageList = async (params: VillageListRequestParams) => {
 
 export const getVillageDetail = async (params: VillageDetailRequestParams) => {
   const { id } = params;
-  const { data, error } = await supabase.from('villages').select('*').eq('village_id', id);
+  const { data, error } = await supabase
+    .from('get_village_detail_view')
+    .select('*')
+    .eq('village_id', id);
   if (error) throw new Error(error.message);
   return data?.[0] || null;
 };

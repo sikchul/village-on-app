@@ -1,5 +1,5 @@
 import { DefaultContentLayout } from '@app/layout';
-import { useAuth } from '@app/provider/AuthProvider';
+import { useAuth } from '@app/provider/useAuth';
 import { ToolbarBackButton } from '@app/toolbar';
 import { IonButton, IonPage } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';

@@ -8,32 +8,17 @@ import type { Session, User } from '@supabase/supabase-js';
 import { AuthError } from '@supabase/supabase-js';
 import { useQueryClient } from '@tanstack/react-query';
 import { KakaoLoginPlugin } from 'capacitor-kakao-login-plugin';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import type { AuthProviderContext, AuthProviderProps } from './types';
+import { AuthProviderContext } from './context';
+import type { AuthProviderProps } from './types';
 
 const Provider = {
   Kakao: 'kakao'
 };
 
 const SessionKey = 'supabase-session';
-
-const AuthProviderContext = createContext<AuthProviderContext>({
-  user: null,
-  isAuthenticated: false,
-  signInForKakao: async () => {},
-  signOut: async () => {},
-  updateProfileInfo: async () => {}
-});
-
-export const useAuth = () => {
-  const context = useContext(AuthProviderContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const history = useHistory();
@@ -80,15 +65,18 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setIsAuthenticated(false);
   };
 
-  const updateUserInfo = async (user: User) => {
-    const profile = await getUserProfile(user.id);
+  const updateUserInfo = useCallback(
+    async (user: User) => {
+      const profile = await getUserProfile(user.id);
 
-    if (profile) {
-      setUser(profile);
-      setIsAuthenticated(true);
-      queryClient.clear();
-    }
-  };
+      if (profile) {
+        setUser(profile);
+        setIsAuthenticated(true);
+        queryClient.clear();
+      }
+    },
+    [queryClient]
+  );
 
   const updateProfileInfo = async (profileId: string) => {
     const profile = await getUserProfile(profileId);
@@ -98,12 +86,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
-  const restoreSession = async () => {
+  const restoreSession = useCallback(async () => {
     const { value } = await Preferences.get({ key: SessionKey });
 
-    if (!value) {
-      return;
-    }
+    if (!value) return;
 
     const parsedSession = JSON.parse(value) as Session;
     const { data, error } = await supabase.auth.setSession({
@@ -124,11 +110,11 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
 
     await updateUserInfo(data.user);
-  };
+  }, [updateUserInfo]);
 
   useEffect(() => {
     restoreSession();
-  }, []);
+  }, [restoreSession]);
 
   return (
     <AuthProviderContext.Provider

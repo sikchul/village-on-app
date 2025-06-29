@@ -1,4 +1,4 @@
-import { useAuth } from '@app/provider/AuthProvider';
+import { useAuth } from '@app/provider/useAuth';
 import { useMutateVillageLike } from '@entities/villages/hooks';
 import { IonIcon, IonRow, IonText } from '@ionic/react';
 import type { Database } from '@shared/api/supabase';

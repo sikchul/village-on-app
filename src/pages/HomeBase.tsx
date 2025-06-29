@@ -1,4 +1,4 @@
-import { useAuth } from '@app/provider/AuthProvider';
+import { useAuth } from '@app/provider/useAuth';
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabButton, IonTabs } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
 import { TabBar } from '@shared/ui/tabs';

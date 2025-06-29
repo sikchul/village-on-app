@@ -1,6 +1,80 @@
 .login-page {
-  background-image: url('/reviews-bg.png');
-  background-size: 100%;
-  background-position: 0 -100px;
+  background-image: url('/login-bg.png');
+  background-size: 150%;
+  background-position: 0 -180px;
   background-repeat: no-repeat;
+
+  .login-page-grid {
+    padding: 56px 24px;
+
+    .login-page-title-row {
+      margin-bottom: 62px;
+      gap: 18px;
+
+      .login-page-title-col {
+        text-align: center;
+
+        .login-page-title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: rgb(48, 53, 26);
+          text-align: center;
+        }
+
+        .login-page-description {
+          font-size: 1rem;
+          color: #737373;
+        }
+      }
+    }
+
+    .login-button-row {
+      .login-button-col {
+        .kakao-login-button {
+          --background: #fee500;
+          --color: #3c1e1e;
+          --border-radius: 12px;
+          --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          --padding-start: 16px;
+          --padding-end: 16px;
+          --padding-top: 16px;
+          --padding-bottom: 16px;
+          height: 56px;
+          font-weight: 600;
+          font-size: 16px;
+          text-transform: none;
+
+          &:hover {
+            --background: #fdd835;
+          }
+
+          &:active {
+            --background: #fbc02d;
+          }
+
+          .kakao-button-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+
+            .kakao-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            }
+
+            .kakao-button-text {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 1.2;
+            }
+          }
+        }
+      }
+    }
+  }
 }

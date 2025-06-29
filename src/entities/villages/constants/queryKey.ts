@@ -7,5 +7,6 @@ export const VillageQueryKey = {
   fetchVillageList: (params: Omit<VillageListRequestParams, 'page'>) =>
     ['fetchVillageList', params.location, params.type] as const,
   fetchVillageDetail: (params: VillageDetailRequestParams) =>
-    ['fetchVillageDetail', params.id] as const
+    ['fetchVillageDetail', params.id] as const,
+  fetchLikedVillageList: (profileId: string) => ['fetchLikedVillageList', profileId] as const
 };

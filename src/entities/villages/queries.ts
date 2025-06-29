@@ -55,3 +55,22 @@ export const getVillageDetail = async (params: VillageDetailRequestParams) => {
   if (error) throw new Error(error.message);
   return data?.[0] || null;
 };
+
+export const getLikedVillages = async ({ profileId }: { profileId: string }) => {
+  const { data, error } = await supabase
+    .from('villages_likes')
+    .select(
+      `
+      village_id,
+      villages!inner(*)
+    `,
+      { count: 'exact' }
+    )
+    .eq('profile_id', profileId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data?.map((item) => item.villages) ?? [];
+};

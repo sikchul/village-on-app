@@ -8,13 +8,32 @@
 
   .village-detail-header-left-row {
     gap: 8px;
-  }
 
-  .village-detail-header-title {
-    margin-left: 4px;
-    --color: rgb(48, 53, 26);
-    font-size: 1.25rem;
-    font-weight: bold;
+    .village-detail-header-title-col {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .village-detail-header-title {
+        margin-left: 4px;
+        --color: rgb(48, 53, 26);
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .likes-text {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        .likes-icon {
+          font-size: 1.5rem;
+        }
+        .is-liked {
+          color: #db3a32;
+        }
+      }
+    }
   }
 
   .village-detail-header-description {

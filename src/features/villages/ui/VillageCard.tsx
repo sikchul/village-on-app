@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@shared/ui/card';
 import { Chip } from '@shared/ui/chip';
 import { Col, Grid } from '@shared/ui/grid';
 import cn from 'classnames';
-import { locationOutline } from 'ionicons/icons';
+import { heartOutline, locationOutline } from 'ionicons/icons';
 import { useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ interface VillageCardProps extends DefaultComponentProps {
 
 export default function VillageCard({ className, village, index = 0 }: VillageCardProps) {
   const history = useHistory();
-  const { exprn_village_nm, rdnmadr, exprn_se, village_id } = village;
+  const { exprn_village_nm, rdnmadr, exprn_se, village_id, likes } = village;
   const exprnSeList = useMemo(() => {
     const items = exprn_se.split('+');
     return items.sort((a, b) => {
@@ -43,7 +43,17 @@ export default function VillageCard({ className, village, index = 0 }: VillageCa
     >
       <img alt="card-background" src={backgroundImage} />
       <CardHeader>
-        <IonCardTitle className={styles['card-title']}>{exprn_village_nm}</IonCardTitle>
+        <Grid className={styles['card-title-container']}>
+          <IonRow className={styles['card-title-row']}>
+            <Col>
+              <IonCardTitle className={styles['card-title']}>{exprn_village_nm}</IonCardTitle>
+            </Col>
+            <IonText className={styles['likes-text']}>
+              <IonIcon icon={heartOutline} className={styles['likes-icon']} />
+              {likes}
+            </IonText>
+          </IonRow>
+        </Grid>
         <IonCardSubtitle>
           <Grid>
             <IonRow className="ion-align-items-center">

@@ -6,10 +6,28 @@
     object-fit: cover;
   }
 
-  .card-title {
-    --color: rgb(48, 53, 26);
-    font-size: 1rem;
-    font-weight: bold;
+  .card-title-container {
+    width: 100%;
+
+    .card-title-row {
+      align-items: center;
+
+      .card-title {
+        --color: rgb(48, 53, 26);
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .likes-text {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        .likes-icon {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 
   .subtitle-text {

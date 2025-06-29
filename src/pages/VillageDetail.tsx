@@ -19,6 +19,7 @@ export default function VillageDetail({ match }: VillageDetailProps) {
   const { id } = match.params;
   const { data: villageDetail } = useFetchVillageDetail({ id: Number(id) });
   const {
+    village_id,
     exprn_village_nm,
     rdnmadr,
     likes = 0,
@@ -26,7 +27,8 @@ export default function VillageDetail({ match }: VillageDetailProps) {
     phone_number,
     exprn_cn,
     latitude,
-    longitude
+    longitude,
+    is_liked
   } = villageDetail || {};
 
   const handleMap = useCallback(() => {
@@ -48,9 +50,11 @@ export default function VillageDetail({ match }: VillageDetailProps) {
             <IonRow className={styles['village-detail-row']}>
               <Col>
                 <VillageDetailHeader
+                  village_id={village_id || 0}
                   exprn_village_nm={exprn_village_nm || '-'}
                   rdnmadr={rdnmadr || '-'}
                   likes={likes}
+                  is_liked={is_liked || false}
                 />
               </Col>
             </IonRow>

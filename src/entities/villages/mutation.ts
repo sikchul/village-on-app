@@ -4,7 +4,7 @@ export const toggleVillageLike = async ({
   villageId,
   userId
 }: {
-  villageId: string;
+  villageId: number;
   userId: string;
 }) => {
   const { count } = await supabase

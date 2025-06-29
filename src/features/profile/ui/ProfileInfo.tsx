@@ -45,8 +45,8 @@ export default function ProfileInfo({}: ProfileInfoProps) {
 
   const handleEditNickname = useCallback(() => {
     presentEditNicknameModal({
-      breakpoints: [0, 0.4],
-      initialBreakpoint: 0.4,
+      breakpoints: [0, 0.5],
+      initialBreakpoint: 0.5,
       backdropBreakpoint: 0
     });
   }, [presentEditNicknameModal]);

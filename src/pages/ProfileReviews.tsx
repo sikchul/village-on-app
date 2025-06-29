@@ -21,7 +21,11 @@ export default function ProfileReviews({}: ProfileReviewsProps) {
         </Toolbar>
       </Header>
       <Content>
-        <DefaultContentLayout extraContent={<ProfileExtraContent />} defaultOffset={240}>
+        <DefaultContentLayout
+          className={styles['default-content-layout']}
+          extraContent={<ProfileExtraContent />}
+          defaultOffset={240}
+        >
           <ProfileReview />
         </DefaultContentLayout>
       </Content>

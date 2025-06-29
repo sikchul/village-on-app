@@ -1,6 +1,5 @@
 import { DefaultContentLayout } from '@app/layout';
 import { ToolbarBackButton } from '@app/toolbar';
-import { ProfileExtraContent } from '@features/profile/ui';
 import { IonPage } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
 import type { DefaultPageComponentProps } from '@shared/types/props';
@@ -21,7 +20,11 @@ export default function Reviews({}: ReviewsProps) {
         </Toolbar>
       </Header>
       <Content>
-        <DefaultContentLayout extraContent={<ProfileExtraContent />} defaultOffset={240}>
+        <DefaultContentLayout
+          className={styles['default-content-layout']}
+          defaultOffset={240}
+          defaultScrollOffset={100}
+        >
           <div style={{ padding: '16px' }}>{'준비중...'}</div>
         </DefaultContentLayout>
       </Content>

@@ -8,7 +8,7 @@ export const useMutateVillageLike = () => {
 
   return useMutation({
     mutationFn: toggleVillageLike,
-    onSettled: (_, __, { villageId }) => {
+    onSettled: (_, __, { villageId, userId }) => {
       queryClient.invalidateQueries({
         queryKey: VillageQueryKey.fetchVillageDetail({ id: Number(villageId) })
       });
@@ -17,6 +17,9 @@ export const useMutateVillageLike = () => {
       });
       queryClient.removeQueries({
         queryKey: VillageQueryKey.fetchHomeVillageList
+      });
+      queryClient.removeQueries({
+        queryKey: VillageQueryKey.fetchLikedVillageList(userId)
       });
     }
   });

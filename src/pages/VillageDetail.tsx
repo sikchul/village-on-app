@@ -74,11 +74,7 @@ export default function VillageDetail({ match }: VillageDetailProps) {
         </Toolbar>
       </Header>
       <Content>
-        <DefaultContentLayout
-          className={styles['default-content-layout']}
-          defaultOffset={240}
-          defaultScrollOffset={100}
-        >
+        <DefaultContentLayout defaultOffset={240} defaultScrollOffset={100}>
           <Grid className={styles['village-detail-layout']}>
             <IonRow className={styles['village-detail-row']}>
               <Col>

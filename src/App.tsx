@@ -1,4 +1,4 @@
-import { CapacitorBackButtonHandler } from '@app/handler';
+import { CapacitorBackButtonHandler, CapacitorOrientationHandler } from '@app/handler';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import HomeBase from '@pages/HomeBase';
@@ -81,6 +81,7 @@ export default function App() {
             </IonRouterOutlet>
           </AuthProvider>
           <CapacitorBackButtonHandler />
+          <CapacitorOrientationHandler />
         </IonReactRouter>
       </IonApp>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -17,6 +17,9 @@ project(':capacitor-keyboard').projectDir = new File('../node_modules/.pnpm/@cap
 include ':capacitor-preferences'
 project(':capacitor-preferences').projectDir = new File('../node_modules/.pnpm/@capacitor+preferences@7.0.1_@capacitor+core@7.4.0/node_modules/@capacitor/preferences/android')
 
+include ':capacitor-screen-orientation'
+project(':capacitor-screen-orientation').projectDir = new File('../node_modules/.pnpm/@capacitor+screen-orientation@7.0.1_@capacitor+core@7.4.0/node_modules/@capacitor/screen-orientation/android')
+
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../node_modules/.pnpm/@capacitor+status-bar@7.0.1_@capacitor+core@7.4.0/node_modules/@capacitor/status-bar/android')
 

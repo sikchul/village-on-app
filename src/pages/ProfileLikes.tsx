@@ -22,6 +22,7 @@ export default function ProfileLikes({}: ProfileLikesProps) {
       </Header>
       <Content>
         <DefaultContentLayout
+          className={styles['default-content-layout']}
           extraContent={<ProfileExtraContent />}
           defaultOffset={240}
           defaultScrollOffset={80}

@@ -2,4 +2,8 @@
   background-image: url('/villages-bg.png');
   background-size: 100%;
   background-repeat: no-repeat;
+
+  .default-content-layout {
+    padding-bottom: var(--ion-safe-area-bottom);
+  }
 }

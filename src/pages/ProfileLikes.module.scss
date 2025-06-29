@@ -3,4 +3,8 @@
   background-size: 100%;
   background-position: 0 -100px;
   background-repeat: no-repeat;
+
+  .default-content-layout {
+    padding-bottom: var(--ion-safe-area-bottom);
+  }
 }

@@ -142,7 +142,11 @@ export default function Villages({}: VillagesProps) {
         </Toolbar>
       </Header>
       <Content>
-        <DefaultContentLayout defaultOffset={236} defaultScrollOffset={80}>
+        <DefaultContentLayout
+          className={styles['default-content-layout']}
+          defaultOffset={240}
+          defaultScrollOffset={100}
+        >
           <VillageList
             villages={villageItems}
             inViewRef={inViewRef}

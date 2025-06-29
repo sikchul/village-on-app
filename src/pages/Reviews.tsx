@@ -22,7 +22,7 @@ export default function Reviews({}: ReviewsProps) {
       </Header>
       <Content>
         <DefaultContentLayout extraContent={<ProfileExtraContent />} defaultOffset={240}>
-          <div>list</div>
+          <div style={{ padding: '16px' }}>{'준비중...'}</div>
         </DefaultContentLayout>
       </Content>
     </IonPage>

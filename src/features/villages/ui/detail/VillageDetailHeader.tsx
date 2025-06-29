@@ -41,7 +41,7 @@ export default function VillageDetailHeader({
       setIsLiked(!isLiked);
       likeVillage({ villageId: village_id, userId: String(user?.profile_id) });
     } else {
-      history.push(ROUTE_PATH.LOGIN);
+      history.replace(ROUTE_PATH.LOGIN);
     }
   }, [
     isAuthenticated,

@@ -1,0 +1,67 @@
+.profile-edit-modal {
+  .input-box {
+    --highlight-color-focused: #677e32;
+  }
+  .confirm-button {
+    --background: #677e32;
+  }
+
+  .avatar-section {
+    margin-top: 24px;
+
+    .avatar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .avatar-container {
+        position: relative;
+        cursor: pointer;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        .avatar {
+          width: 80px;
+          height: 80px;
+          border: 2px solid #677e32;
+        }
+
+        .avatar-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          border-radius: 50%;
+
+          .camera-icon {
+            color: white;
+            font-size: 24px;
+          }
+        }
+
+        &:hover .avatar-overlay {
+          opacity: 1;
+        }
+      }
+
+      .avatar-label {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        color: #666;
+        text-align: center;
+      }
+    }
+  }
+}

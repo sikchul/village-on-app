@@ -29,7 +29,7 @@ const TAB_BUTTONS = [
   },
   {
     label: '프로필',
-    path: ROUTE_PATH.PROFILE,
+    path: ROUTE_PATH.PROFILE_INFO,
     icon: personOutline
   }
 ];
@@ -40,7 +40,7 @@ export default function HomeBase({ match, history }: HomeBaseProps) {
     return TAB_BUTTONS.map((item) => {
       let path = item.path;
       if (item.label === '프로필') {
-        path = isAuthenticated && user ? ROUTE_PATH.PROFILE : ROUTE_PATH.LOGIN;
+        path = isAuthenticated && user ? ROUTE_PATH.PROFILE_INFO : ROUTE_PATH.LOGIN;
       }
 
       return {

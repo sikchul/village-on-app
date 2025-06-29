@@ -2,7 +2,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import HomeBase from '@pages/HomeBase';
 import Login from '@pages/Login';
-import Profile from '@pages/Profile';
+import ProfileBase from '@pages/ProfileBase';
 import Reviews from '@pages/Reviews';
 import VillageDetail from '@pages/VillageDetail';
 import Villages from '@pages/Villages';
@@ -71,7 +71,7 @@ export default function App() {
               <Route exact path={ROUTE_PATH.VILLAGE_DETAIL} component={VillageDetail} />
               <Route exact path={ROUTE_PATH.REVIEWS} component={Reviews} />
               <Route exact path={ROUTE_PATH.LOGIN} component={Login} />
-              <Route exact path={ROUTE_PATH.PROFILE} component={Profile} />
+              <Route path={ROUTE_PATH.PROFILE} component={ProfileBase} />
             </IonRouterOutlet>
           </AuthProvider>
         </IonReactRouter>

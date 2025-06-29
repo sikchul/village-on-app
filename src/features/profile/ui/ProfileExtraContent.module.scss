@@ -1,0 +1,36 @@
+.profile-extra-content {
+  padding: 16px;
+
+  .profile-extra-content-row {
+    gap: 8px;
+
+    .profile-extra-content-col {
+      text-align: center;
+
+      .profile-extra-content-chip {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        --background: #ffffff;
+        --color: rgba(58, 66, 38);
+
+        &.selected {
+          --background: rgba(58, 66, 38);
+          --color: #ffffff;
+        }
+
+        .profile-extra-content-chip-text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          font-size: 1rem;
+
+          .profile-extra-content-chip-text-icon {
+            font-size: 1.7rem;
+          }
+        }
+      }
+    }
+  }
+}

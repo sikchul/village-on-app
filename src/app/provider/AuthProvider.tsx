@@ -3,7 +3,6 @@ import { getUserProfile } from '@entities/profiles/queries';
 import { supabase } from '@shared/api/supabase';
 import type { Profile } from '@shared/api/supabase';
 import { ROUTE_PATH } from '@shared/constants/route';
-import { generatePath } from '@shared/libs/route';
 import type { Session, User } from '@supabase/supabase-js';
 import { AuthError } from '@supabase/supabase-js';
 import { useQueryClient } from '@tanstack/react-query';
@@ -48,7 +47,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     });
 
     await updateUserInfo(data.user);
-    history.replace(generatePath(ROUTE_PATH.ROOT));
+    history.replace(ROUTE_PATH.ROOT);
   };
 
   const signOut = async () => {
@@ -56,7 +55,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     await supabase.auth.signOut();
     await clearSession();
     queryClient.clear();
-    history.replace(generatePath(ROUTE_PATH.ROOT));
+    history.replace(ROUTE_PATH.HOME);
   };
 
   const clearSession = async () => {

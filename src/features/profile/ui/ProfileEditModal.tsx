@@ -66,7 +66,6 @@ export default function ProfileEditModal({
       onDismiss();
     }
   }, [newNickname, nickname, selectedImage, previewUrl, updateProfile, onDismiss, user]);
-
   return (
     <>
       <Content className={cn(styles['profile-edit-modal'], 'ion-padding')}>
@@ -75,7 +74,10 @@ export default function ProfileEditModal({
             <Col className={styles['avatar-col']}>
               <div className={styles['avatar-container']} onClick={handleAvatarClick}>
                 <IonAvatar className={styles['avatar']}>
-                  <img alt="Profile avatar" src={previewUrl} />
+                  <img
+                    alt="Profile avatar"
+                    src={`${previewUrl}${previewUrl.includes('blob') ? '' : '?v=' + Date.now()}`}
+                  />
                 </IonAvatar>
                 <div className={styles['avatar-overlay']}>
                   <IonIcon icon={cameraOutline} className={styles['camera-icon']} />

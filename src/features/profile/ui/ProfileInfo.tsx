@@ -56,7 +56,7 @@ export default function ProfileInfo({}: ProfileInfoProps) {
       history.replace(ROUTE_PATH.ROOT);
     }
   }, [user, history]);
-
+  console.log(avatar);
   return (
     <Grid className={styles['profile-info']}>
       <IonText className={styles['profile-info-title']}>사용자 정보</IonText>
@@ -71,7 +71,10 @@ export default function ProfileInfo({}: ProfileInfoProps) {
         </IonButton>
         <Col className={styles['profile-info-avatar-col']}>
           <IonAvatar>
-            <img alt="Silhouette of a person's head" src={avatar} />
+            <img
+              alt="Silhouette of a person's head"
+              src={`${avatar}${avatar.includes('blob') ? '' : '?v=' + Date.now()}`}
+            />
           </IonAvatar>
         </Col>
         <Col className={styles['profile-info-text-col']}>

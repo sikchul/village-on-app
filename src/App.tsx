@@ -1,3 +1,4 @@
+import { CapacitorBackButtonHandler } from '@app/handler';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import HomeBase from '@pages/HomeBase';
@@ -40,6 +41,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
 import AuthProvider from './app/provider/AuthProvider';
 
 setupIonicReact();
@@ -74,6 +76,7 @@ export default function App() {
               <Route path={ROUTE_PATH.PROFILE} component={ProfileBase} />
             </IonRouterOutlet>
           </AuthProvider>
+          <CapacitorBackButtonHandler />
         </IonReactRouter>
       </IonApp>
       <ReactQueryDevtools initialIsOpen={false} />

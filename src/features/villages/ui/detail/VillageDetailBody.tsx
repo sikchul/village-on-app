@@ -51,7 +51,7 @@ export default function VillageDetailBody({
           ))}
         </Col>
       </IonRow>
-      <VillageDetailFooter />
+      <VillageDetailFooter phone_number={phone_number} />
     </Grid>
   );
 }

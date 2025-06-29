@@ -20,7 +20,7 @@ export default function VillageDetail({ match }: VillageDetailProps) {
   const { data: villageDetail } = useFetchVillageDetail({ id: Number(id) });
   const {
     village_id,
-    exprn_village_nm,
+    exprn_village_nm = '',
     rdnmadr,
     likes = 0,
     rprsntv_nm,
@@ -32,16 +32,45 @@ export default function VillageDetail({ match }: VillageDetailProps) {
   } = villageDetail || {};
 
   const handleMap = useCallback(() => {
-    console.log('latitude', latitude);
-    console.log('longitude', longitude);
-  }, [latitude, longitude]);
+    if (!latitude || !longitude) {
+      return;
+    }
+
+    try {
+      const userAgent = navigator.userAgent.toLowerCase();
+      let mapUrl = '';
+
+      if (/iphone|ipad|ipod/.test(userAgent)) {
+        mapUrl = `https://map.daum.net/link/map/${exprn_village_nm},${latitude},${longitude}`;
+      } else if (/android/.test(userAgent)) {
+        mapUrl = `https://map.naver.com/p/search/${encodeURIComponent(
+          exprn_village_nm
+        )}?c=${longitude},${latitude},15,0,0,0,dh`;
+      } else {
+        mapUrl = `https://map.daum.net/link/map/${exprn_village_nm},${latitude},${longitude}`;
+      }
+
+      window.open(mapUrl, '_blank');
+    } catch {
+      try {
+        const fallbackUrl = `https://map.daum.net/link/map/${exprn_village_nm},${latitude},${longitude}`;
+        window.open(fallbackUrl, '_blank');
+      } catch {
+        throw new Error('Failed to open map app');
+      }
+    }
+  }, [latitude, longitude, exprn_village_nm]);
 
   return (
     <IonPage className={styles['village-detail-page']}>
       <Header>
         <Toolbar>
           <ToolbarBackButton icon={chevronBackOutline} defaultHref={ROUTE_PATH.HOME} />
-          <ToolbarButton icon={locationOutline} onClick={handleMap} />
+          <ToolbarButton
+            icon={locationOutline}
+            onClick={handleMap}
+            disabled={!latitude || !longitude}
+          />
         </Toolbar>
       </Header>
       <Content>

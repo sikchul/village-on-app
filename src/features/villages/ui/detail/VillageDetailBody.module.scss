@@ -1,5 +1,5 @@
 .village-detail-body {
-  margin-bottom: 64px;
+  margin-bottom: calc(var(--ion-safe-area-bottom) + 64px);
   .village-detail-info-row {
     margin-bottom: 8px;
     .village-detail-info-title {

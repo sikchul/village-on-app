@@ -45,8 +45,8 @@ export default function ProfileInfo({}: ProfileInfoProps) {
 
   const handleEditNickname = useCallback(() => {
     presentEditNicknameModal({
-      breakpoints: [0, 0.5],
-      initialBreakpoint: 0.5,
+      breakpoints: [0, 0.7],
+      initialBreakpoint: 0.7,
       backdropBreakpoint: 0
     });
   }, [presentEditNicknameModal]);
@@ -56,7 +56,7 @@ export default function ProfileInfo({}: ProfileInfoProps) {
       history.replace(ROUTE_PATH.ROOT);
     }
   }, [user, history]);
-  console.log(avatar);
+
   return (
     <Grid className={styles['profile-info']}>
       <IonText className={styles['profile-info-title']}>사용자 정보</IonText>

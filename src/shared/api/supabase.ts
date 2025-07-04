@@ -5,6 +5,7 @@ import type { SetNonNullable, MergeDeep } from 'type-fest';
 
 export type Village = Tables<'villages'>;
 export type Profile = Tables<'profiles'>;
+export type Review = Tables<'reviews'>;
 
 export type Database = MergeDeep<
   SupabaseDatabase,

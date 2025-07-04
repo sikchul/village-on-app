@@ -36,6 +36,95 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          comment: string
+          created_at: string
+          likes: number
+          profile_id: string | null
+          review_id: number
+          review_images: string[] | null
+          village_id: number | null
+        }
+        Insert: {
+          comment: string
+          created_at?: string
+          likes?: number
+          profile_id?: string | null
+          review_id?: number
+          review_images?: string[] | null
+          village_id?: number | null
+        }
+        Update: {
+          comment?: string
+          created_at?: string
+          likes?: number
+          profile_id?: string | null
+          review_id?: number
+          review_images?: string[] | null
+          village_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_profile_id_profiles_profile_id_fk"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_home_village_list"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_village_detail_view"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "villages"
+            referencedColumns: ["village_id"]
+          },
+        ]
+      }
+      reviews_likes: {
+        Row: {
+          profile_id: string
+          review_id: number
+        }
+        Insert: {
+          profile_id: string
+          review_id: number
+        }
+        Update: {
+          profile_id?: string
+          review_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_likes_profile_id_profiles_profile_id_fk"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "reviews_likes_review_id_reviews_review_id_fk"
+            columns: ["review_id"]
+            isOneToOne: false
+            referencedRelation: "reviews"
+            referencedColumns: ["review_id"]
+          },
+        ]
+      }
       villages: {
         Row: {
           appn_date: string

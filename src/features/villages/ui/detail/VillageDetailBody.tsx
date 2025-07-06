@@ -11,12 +11,13 @@ import VillageDetailInfo from './VillageDetailInfo';
 
 interface VillageDetailBodyProps
   extends DefaultComponentProps,
-    Pick<Village, 'rprsntv_nm' | 'phone_number' | 'exprn_cn'> {}
+    Pick<Village, 'rprsntv_nm' | 'phone_number' | 'exprn_cn' | 'village_id'> {}
 
 export default function VillageDetailBody({
   rprsntv_nm,
   phone_number,
-  exprn_cn
+  exprn_cn,
+  village_id
 }: VillageDetailBodyProps) {
   const exprnCnList = useMemo(() => {
     const items = exprn_cn.split('+');
@@ -51,7 +52,7 @@ export default function VillageDetailBody({
           ))}
         </Col>
       </IonRow>
-      <VillageDetailFooter phone_number={phone_number} />
+      <VillageDetailFooter phone_number={phone_number} village_id={village_id} />
     </Grid>
   );
 }

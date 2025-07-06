@@ -90,6 +90,7 @@ export default function VillageDetail({ match }: VillageDetailProps) {
             <IonRow className={styles['village-detail-row']}>
               <Col>
                 <VillageDetailBody
+                  village_id={village_id || 0}
                   rprsntv_nm={rprsntv_nm || '-'}
                   phone_number={phone_number || '-'}
                   exprn_cn={exprn_cn || '-'}

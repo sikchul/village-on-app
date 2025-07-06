@@ -1,0 +1,75 @@
+.review-card {
+  .review-bg-img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .card-title-container {
+    width: 100%;
+
+    .card-title-row {
+      align-items: center;
+
+      .card-title {
+        --color: rgb(48, 53, 26);
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .likes-text {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        .likes-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .subtitle-text {
+    vertical-align: middle;
+  }
+
+  .user-info-container {
+    width: 100%;
+    margin-top: 8px;
+
+    .user-info-row {
+      align-items: center;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: flex-end;
+
+        .user-avatar {
+          width: 24px;
+          height: 24px;
+          --border-radius: 50%;
+        }
+
+        .user-nickname {
+          font-size: 0.875rem;
+          --color: rgb(48, 53, 26);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .comment-text {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    line-height: 1.4;
+    max-height: 4.2em; /* 3줄 * 1.4 line-height */
+  }
+}

@@ -1,3 +1,5 @@
+import type { Review } from '@shared/api/supabase';
+
 export interface ReviewImage {
   webPath: string;
   format: string;
@@ -28,4 +30,8 @@ export interface ReviewListItem {
   avatar: string;
   nickname: string;
   exprn_village_nm: string;
+}
+
+export interface ReviewDetailRequestParams {
+  id: Review['review_id'];
 }

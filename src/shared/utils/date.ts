@@ -1,4 +1,8 @@
-export const formatDateToKorean = (dateString: string): string => {
+export const formatDateToKorean = (dateString?: string): string => {
+  if (!dateString) {
+    return '-';
+  }
+
   const date = new Date(dateString);
   const koreanDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
 

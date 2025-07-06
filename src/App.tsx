@@ -6,6 +6,7 @@ import Login from '@pages/Login';
 import ProfileInfos from '@pages/ProfileInfos';
 import ProfileLikes from '@pages/ProfileLikes';
 import ProfileReviews from '@pages/ProfileReviews';
+import ReviewDetail from '@pages/ReviewDetail';
 import Reviews from '@pages/Reviews';
 import VillageDetail from '@pages/VillageDetail';
 import Villages from '@pages/Villages';
@@ -74,6 +75,7 @@ export default function App() {
               <Route exact path={ROUTE_PATH.VILLAGES} component={Villages} />
               <Route exact path={ROUTE_PATH.VILLAGE_DETAIL} component={VillageDetail} />
               <Route exact path={ROUTE_PATH.REVIEWS} component={Reviews} />
+              <Route exact path={ROUTE_PATH.REVIEW_DETAIL} component={ReviewDetail} />
               <Route exact path={ROUTE_PATH.LOGIN} component={Login} />
               <Route exact path={ROUTE_PATH.PROFILE_INFO} component={ProfileInfos} />
               <Route exact path={ROUTE_PATH.PROFILE_LIKE} component={ProfileLikes} />

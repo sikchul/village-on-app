@@ -42,7 +42,7 @@ export default function ReviewCard({ className, review, index = 0 }: ReviewCardP
     <Card
       className={cn(styles['review-card'], className)}
       onClick={() => {
-        history.push(`${ROUTE_PATH.REVIEW_DETAIL}/${review_id}`);
+        history.push(`${ROUTE_PATH.REVIEWS}/${review_id}`);
       }}
     >
       <img alt="card-background" src={backgroundImage} className={styles['review-bg-img']} />

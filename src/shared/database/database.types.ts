@@ -120,6 +120,13 @@ export type Database = {
             foreignKeyName: "reviews_likes_review_id_reviews_review_id_fk"
             columns: ["review_id"]
             isOneToOne: false
+            referencedRelation: "get_review_detail_view"
+            referencedColumns: ["review_id"]
+          },
+          {
+            foreignKeyName: "reviews_likes_review_id_reviews_review_id_fk"
+            columns: ["review_id"]
+            isOneToOne: false
             referencedRelation: "reviews"
             referencedColumns: ["review_id"]
           },
@@ -272,6 +279,56 @@ export type Database = {
           village_id: number | null
         }
         Relationships: []
+      }
+      get_review_detail_view: {
+        Row: {
+          avatar: string | null
+          comment: string | null
+          created_at: string | null
+          exprn_village_nm: string | null
+          is_liked: boolean | null
+          is_my_review: boolean | null
+          latitude: string | null
+          likes: number | null
+          longitude: string | null
+          nickname: string | null
+          phone_number: string | null
+          profile_id: string | null
+          rdnmadr: string | null
+          review_id: number | null
+          review_images: string[] | null
+          village_id: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_profile_id_profiles_profile_id_fk"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_home_village_list"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "get_village_detail_view"
+            referencedColumns: ["village_id"]
+          },
+          {
+            foreignKeyName: "reviews_village_id_villages_village_id_fk"
+            columns: ["village_id"]
+            isOneToOne: false
+            referencedRelation: "villages"
+            referencedColumns: ["village_id"]
+          },
+        ]
       }
       get_village_detail_view: {
         Row: {

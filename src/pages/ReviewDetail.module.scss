@@ -1,0 +1,14 @@
+.review-detail-page {
+  background-image: url('/review-detail-bg.png');
+  background-size: 100%;
+  background-position: 0 -248px;
+  background-repeat: no-repeat;
+
+  .review-detail-layout {
+    padding: 24px 16px;
+
+    .review-detail-row {
+      margin-bottom: 16px;
+    }
+  }
+}

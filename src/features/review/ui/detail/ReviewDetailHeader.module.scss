@@ -1,0 +1,50 @@
+.review-detail-header {
+  padding-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgb(241, 241, 241);
+
+  .review-detail-header-left-row {
+    gap: 8px;
+
+    .review-detail-header-title-col {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .review-detail-header-title {
+        margin-left: 4px;
+        --color: rgb(48, 53, 26);
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .likes-text {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        .likes-icon {
+          font-size: 1.5rem;
+        }
+        .is-liked {
+          color: #db3a32;
+        }
+      }
+    }
+  }
+
+  .review-detail-header-description {
+    display: flex;
+    align-items: center;
+    color: #737373;
+    font-size: 1rem;
+
+    ion-icon {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+}

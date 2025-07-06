@@ -1,7 +1,7 @@
 import { supabase } from '@shared/api/supabase';
 import { LIST_ITEM_PER_PAGE } from '@shared/constants/app';
 
-import type { ReviewListRequestParams, ReviewListItem } from './types';
+import type { ReviewDetailRequestParams, ReviewListRequestParams, ReviewListItem } from './types';
 
 export const getReviewList = async (params: ReviewListRequestParams) => {
   const { page, profile_id, exprn_village_nm } = params;
@@ -56,4 +56,14 @@ export const getReviewList = async (params: ReviewListRequestParams) => {
     items: flattenedData as ReviewListItem[],
     totalCount: count ?? 0
   };
+};
+
+export const getReviewDetail = async (params: ReviewDetailRequestParams) => {
+  const { id } = params;
+  const { data, error } = await supabase
+    .from('get_review_detail_view')
+    .select('*')
+    .eq('review_id', id);
+  if (error) throw new Error(error.message);
+  return data?.[0] || null;
 };

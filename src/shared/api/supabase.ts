@@ -28,6 +28,9 @@ export type Database = MergeDeep<
             SupabaseDatabase['public']['Views']['get_village_detail_view']['Row']
           >;
         };
+        get_review_detail_view: {
+          Row: SetNonNullable<SupabaseDatabase['public']['Views']['get_review_detail_view']['Row']>;
+        };
       };
     };
   }

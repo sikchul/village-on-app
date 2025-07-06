@@ -54,3 +54,29 @@ export const updateReview = async ({
     throw new Error('Failed to save review');
   }
 };
+
+export const toggleReviewLike = async ({
+  reviewId,
+  userId
+}: {
+  reviewId: number;
+  userId: string;
+}) => {
+  const { count } = await supabase
+    .from('reviews_likes')
+    .select('*', { count: 'exact', head: true })
+    .eq('review_id', Number(reviewId))
+    .eq('profile_id', userId);
+  if (count === 0) {
+    await supabase.from('reviews_likes').insert({
+      review_id: Number(reviewId),
+      profile_id: userId
+    });
+  } else {
+    await supabase
+      .from('reviews_likes')
+      .delete()
+      .eq('review_id', Number(reviewId))
+      .eq('profile_id', userId);
+  }
+};

@@ -10,6 +10,7 @@ interface DefaultContentLayoutProps extends DefaultComponentProps {
   extraContent?: ReactNode;
   defaultOffset?: number;
   defaultScrollOffset?: number;
+  isFixed?: boolean;
 }
 
 const SCROLL_TOP_OFFSET = {
@@ -22,7 +23,8 @@ export default function DefaultContentLayout({
   children,
   extraContent,
   defaultOffset = SCROLL_TOP_OFFSET.DEFAULT,
-  defaultScrollOffset = SCROLL_TOP_OFFSET.SCROLL
+  defaultScrollOffset = SCROLL_TOP_OFFSET.SCROLL,
+  isFixed = false
 }: DefaultContentLayoutProps) {
   const gridRef = useRef<HTMLIonGridElement>(null);
   const contentRowRef = useRef<HTMLIonRowElement>(null);
@@ -55,7 +57,7 @@ export default function DefaultContentLayout({
     const contentRow = contentRowRef.current;
     const contentGrid = gridRef.current;
 
-    if (contentRow && contentGrid) {
+    if (contentRow && contentGrid && !isFixed) {
       contentRow.addEventListener('scroll', handleScroll, { passive: true });
       contentGrid.addEventListener('transitionend', handleTransitionEnd, { passive: true });
       contentGrid.addEventListener('transitionstart', handleTransitionStart, { passive: true });
@@ -65,7 +67,7 @@ export default function DefaultContentLayout({
         contentGrid.removeEventListener('transitionstart', handleTransitionStart);
       };
     }
-  }, [handleScroll, handleTransitionEnd, handleTransitionStart]);
+  }, [handleScroll, handleTransitionEnd, handleTransitionStart, isFixed]);
 
   return (
     <Grid

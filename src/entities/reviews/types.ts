@@ -14,7 +14,7 @@ export interface UpdateReviewRequestParams {
 }
 
 export interface ReviewListRequestParams {
-  page: number;
+  page?: number;
   profile_id?: string;
   exprn_village_nm?: string;
 }

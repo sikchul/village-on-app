@@ -8,12 +8,15 @@ export const useMutateReviewLike = () => {
 
   return useMutation({
     mutationFn: toggleReviewLike,
-    onSettled: (_, __, { reviewId }) => {
+    onSettled: (_, __, { reviewId, userId }) => {
       queryClient.invalidateQueries({
         queryKey: ReviewQueryKey.fetchReviewDetail({ id: Number(reviewId) })
       });
       queryClient.removeQueries({
         queryKey: ReviewQueryKey.fetchReviewList({})
+      });
+      queryClient.removeQueries({
+        queryKey: ReviewQueryKey.fetchProfileReviewList(String(userId))
       });
     }
   });

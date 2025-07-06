@@ -4,5 +4,6 @@ export const ReviewQueryKey = {
   fetchReviewList: (params: Omit<ReviewListRequestParams, 'page'>) =>
     ['fetchReviewList', params.profile_id, params.exprn_village_nm] as const,
   fetchReviewDetail: (params: ReviewDetailRequestParams) =>
-    ['fetchReviewDetail', params.id] as const
+    ['fetchReviewDetail', params.id] as const,
+  fetchProfileReviewList: (profileId: string) => ['fetchProfileReviewList', profileId] as const
 };

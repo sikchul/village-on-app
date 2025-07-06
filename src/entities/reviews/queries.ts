@@ -5,7 +5,7 @@ import type { ReviewDetailRequestParams, ReviewListRequestParams, ReviewListItem
 
 export const getReviewList = async (params: ReviewListRequestParams) => {
   const { page, profile_id, exprn_village_nm } = params;
-  const from = page * LIST_ITEM_PER_PAGE;
+  const from = (page ?? 0) * LIST_ITEM_PER_PAGE;
   const to = from + LIST_ITEM_PER_PAGE - 1;
 
   let query = supabase.from('reviews').select(
@@ -36,12 +36,15 @@ export const getReviewList = async (params: ReviewListRequestParams) => {
     query = query.ilike('villages.exprn_village_nm', `%${exprn_village_nm}%`);
   }
 
-  query = query.order('created_at', { ascending: false }).range(from, to);
+  if (page) {
+    query = query.order('created_at', { ascending: false }).range(from, to);
+  } else {
+    query = query.order('created_at', { ascending: false });
+  }
 
   const { data, error, count } = await query;
   if (error) throw new Error(error.message);
 
-  // 중첩된 객체를 1depth로 평면화
   const flattenedData =
     data?.map((item) => ({
       ...item,

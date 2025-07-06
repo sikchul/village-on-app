@@ -25,6 +25,7 @@ export default function ProfileReviews({}: ProfileReviewsProps) {
           className={styles['default-content-layout']}
           extraContent={<ProfileExtraContent />}
           defaultOffset={240}
+          defaultScrollOffset={80}
         >
           <ProfileReview />
         </DefaultContentLayout>

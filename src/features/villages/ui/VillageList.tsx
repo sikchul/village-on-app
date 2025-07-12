@@ -18,6 +18,7 @@ interface VillageListProps extends DefaultComponentProps {
   isLoading?: boolean;
   isError?: boolean;
   isFetchingNext?: boolean;
+  refetch: () => Promise<void>;
 }
 
 export default function VillageList({
@@ -28,18 +29,23 @@ export default function VillageList({
   inViewRef,
   isLoading,
   isError,
-  isFetchingNext
+  isFetchingNext,
+  refetch
 }: VillageListProps) {
   const { replace } = useHistory();
   const { pathname } = useLocation();
-  const handleResetFilter = async () => {
-    replace({ pathname, search: '' });
-  };
+
   const ExceptionComponent = useVillagesExceptionHandler({
     isLoading,
     isError,
     isEmpty: totalCount === 0,
-    action: handleResetFilter
+    action: async () => {
+      if (isError) {
+        await refetch();
+      } else if (totalCount === 0) {
+        replace({ pathname, search: '' });
+      }
+    }
   });
   return (
     <List lines="none" className={cn(styles['village-list'], className)}>

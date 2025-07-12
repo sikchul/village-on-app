@@ -40,10 +40,12 @@ export default function Reviews({}: ReviewsProps) {
   const {
     data: reviews,
     isLoading: isLoadingReviewList,
+    isFetching: isFetchingReviewList,
     isError: isErrorReviewList,
     isFetchingNextPage,
     hasNextPage,
-    fetchNextPage
+    fetchNextPage,
+    refetch: refetchReviewList
   } = useFetchReviewList(searchParams);
 
   const reviewItems = useMemo(() => reviews?.pages.flatMap((page) => page.items) ?? [], [reviews]);
@@ -127,9 +129,12 @@ export default function Reviews({}: ReviewsProps) {
             inViewRef={inViewRef}
             totalCount={totalCount}
             filterArray={filterArray}
-            isLoading={isLoadingReviewList}
+            isLoading={isLoadingReviewList || isFetchingReviewList}
             isError={isErrorReviewList}
             isFetchingNext={isFetchingNextPage}
+            refetch={async () => {
+              await refetchReviewList();
+            }}
           />
         </DefaultContentLayout>
       </Content>

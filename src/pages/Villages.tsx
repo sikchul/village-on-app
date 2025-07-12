@@ -41,10 +41,12 @@ export default function Villages({}: VillagesProps) {
   const {
     data: villages,
     isLoading: isLoadingVillageList,
+    isFetching: isFetchingVillageList,
     isError: isErrorVillageList,
     isFetchingNextPage,
     hasNextPage,
-    fetchNextPage
+    fetchNextPage,
+    refetch: refetchVillageList
   } = useFetchVillageList(searchParams);
 
   const villageItems = useMemo(
@@ -153,9 +155,12 @@ export default function Villages({}: VillagesProps) {
             inViewRef={inViewRef}
             totalCount={totalCount}
             filterArray={filterArray}
-            isLoading={isLoadingVillageList}
+            isLoading={isLoadingVillageList || isFetchingVillageList}
             isError={isErrorVillageList}
             isFetchingNext={isFetchingNextPage}
+            refetch={async () => {
+              await refetchVillageList();
+            }}
           />
         </DefaultContentLayout>
       </Content>

@@ -19,6 +19,7 @@ interface ReviewListProps extends DefaultComponentProps {
   isLoading?: boolean;
   isError?: boolean;
   isFetchingNext?: boolean;
+  refetch: () => Promise<void>;
 }
 
 export default function VillageList({
@@ -29,18 +30,22 @@ export default function VillageList({
   inViewRef,
   isLoading,
   isError,
-  isFetchingNext
+  isFetchingNext,
+  refetch
 }: ReviewListProps) {
   const { replace } = useHistory();
   const { pathname } = useLocation();
-  const handleResetFilter = async () => {
-    replace({ pathname, search: '' });
-  };
   const ExceptionComponent = useReviewsExceptionHandler({
     isLoading,
     isError,
     isEmpty: reviews.length === 0,
-    action: handleResetFilter
+    action: async () => {
+      if (isError) {
+        await refetch();
+      } else if (totalCount === 0) {
+        replace({ pathname, search: '' });
+      }
+    }
   });
 
   return (

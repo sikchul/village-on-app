@@ -27,9 +27,9 @@ export default function VillageList({
       <Item>
         <ReviewFilterBanner totalCount={totalCount} filterArray={filterArray} />
       </Item>
-      {reviews.map((review, index) => (
+      {reviews.map((review) => (
         <Item key={review.review_id} ref={inViewRef}>
-          <ReviewCard review={review} index={index} />
+          <ReviewCard review={review} />
         </Item>
       ))}
     </List>

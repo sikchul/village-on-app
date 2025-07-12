@@ -8,32 +8,14 @@ export const getReviewList = async (params: ReviewListRequestParams) => {
   const from = (page ?? 0) * LIST_ITEM_PER_PAGE;
   const to = from + LIST_ITEM_PER_PAGE - 1;
 
-  let query = supabase.from('reviews').select(
-    `
-      review_id,
-      profile_id,
-      village_id,
-      review_images,
-      comment,
-      created_at,
-      likes,
-      profiles!reviews_profile_id_profiles_profile_id_fk (
-        avatar,
-        nickname
-      ),
-      villages!reviews_village_id_villages_village_id_fk (
-        exprn_village_nm
-      )
-    `,
-    { count: 'exact' }
-  );
+  let query = supabase.from('get_review_list_view').select('*', { count: 'exact' });
 
   if (profile_id) {
     query = query.eq('profile_id', profile_id);
   }
 
   if (exprn_village_nm) {
-    query = query.ilike('villages.exprn_village_nm', `%${exprn_village_nm}%`);
+    query = query.ilike('exprn_village_nm', `%${exprn_village_nm}%`);
   }
 
   if (page) {
@@ -45,18 +27,8 @@ export const getReviewList = async (params: ReviewListRequestParams) => {
   const { data, error, count } = await query;
   if (error) throw new Error(error.message);
 
-  const flattenedData =
-    data?.map((item) => ({
-      ...item,
-      avatar: item.profiles?.avatar,
-      nickname: item.profiles?.nickname,
-      exprn_village_nm: item.villages?.exprn_village_nm,
-      profiles: undefined,
-      villages: undefined
-    })) || [];
-
   return {
-    items: flattenedData as ReviewListItem[],
+    items: (data as ReviewListItem[]) || [],
     totalCount: count ?? 0
   };
 };

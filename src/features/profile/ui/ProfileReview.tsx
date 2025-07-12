@@ -15,9 +15,9 @@ export default function ProfileReview({}: ProfileReviewProps) {
   return (
     <List lines="none" className={styles['profile-review']}>
       <ListHeader>{'작성한 리뷰'}</ListHeader>
-      {reviewItems.map((review, index) => (
+      {reviewItems.map((review) => (
         <Item key={review.review_id}>
-          <ReviewCard review={review} index={index} />
+          <ReviewCard review={review} />
         </Item>
       ))}
     </List>

@@ -31,6 +31,9 @@ export type Database = MergeDeep<
         get_review_detail_view: {
           Row: SetNonNullable<SupabaseDatabase['public']['Views']['get_review_detail_view']['Row']>;
         };
+        get_review_list_view: {
+          Row: SetNonNullable<SupabaseDatabase['public']['Views']['get_review_list_view']['Row']>;
+        };
       };
     };
   }

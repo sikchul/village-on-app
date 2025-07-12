@@ -14,10 +14,9 @@ import styles from './ReviewCard.module.scss';
 
 interface ReviewCardProps extends DefaultComponentProps {
   review: ReviewListItem;
-  index?: number;
 }
 
-export default function ReviewCard({ className, review, index = 0 }: ReviewCardProps) {
+export default function ReviewCard({ className, review }: ReviewCardProps) {
   const history = useHistory();
   const {
     exprn_village_nm,
@@ -34,9 +33,8 @@ export default function ReviewCard({ className, review, index = 0 }: ReviewCardP
     if (review_images?.[0]) {
       return review_images[0];
     }
-    const imageIndex = index % 3;
-    return `card-bg-${imageIndex}.png`;
-  }, [index, review_images]);
+    return 'empty-review.png';
+  }, [review_images]);
 
   return (
     <Card

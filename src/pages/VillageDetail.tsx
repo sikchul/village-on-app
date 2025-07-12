@@ -6,6 +6,7 @@ import { IonPage, IonRow } from '@ionic/react';
 import { ROUTE_PATH } from '@shared/constants/route';
 import { Content } from '@shared/ui/content';
 import { Col, Grid } from '@shared/ui/grid';
+import { Skeleton } from '@shared/ui/skeleton';
 import { Header, Toolbar } from '@shared/ui/toolbar';
 import { chevronBackOutline, locationOutline } from 'ionicons/icons';
 import { useCallback } from 'react';
@@ -17,7 +18,9 @@ interface VillageDetailProps extends RouteComponentProps<{ id: string }> {}
 
 export default function VillageDetail({ match }: VillageDetailProps) {
   const { id } = match.params;
-  const { data: villageDetail } = useFetchVillageDetail({ id: Number(id) });
+  const { data: villageDetail, isLoading: isLoadingVillageDetail } = useFetchVillageDetail({
+    id: Number(id)
+  });
   const {
     village_id,
     exprn_village_nm = '',
@@ -78,23 +81,31 @@ export default function VillageDetail({ match }: VillageDetailProps) {
           <Grid className={styles['village-detail-layout']}>
             <IonRow className={styles['village-detail-row']}>
               <Col>
-                <VillageDetailHeader
-                  village_id={village_id || 0}
-                  exprn_village_nm={exprn_village_nm || '-'}
-                  rdnmadr={rdnmadr || '-'}
-                  likes={likes}
-                  is_liked={is_liked || false}
-                />
+                {isLoadingVillageDetail ? (
+                  <Skeleton className={styles['skeleton-header']} />
+                ) : (
+                  <VillageDetailHeader
+                    village_id={village_id || 0}
+                    exprn_village_nm={exprn_village_nm || '-'}
+                    rdnmadr={rdnmadr || '-'}
+                    likes={likes}
+                    is_liked={is_liked || false}
+                  />
+                )}
               </Col>
             </IonRow>
             <IonRow className={styles['village-detail-row']}>
               <Col>
-                <VillageDetailBody
-                  village_id={village_id || 0}
-                  rprsntv_nm={rprsntv_nm || '-'}
-                  phone_number={phone_number || '-'}
-                  exprn_cn={exprn_cn || '-'}
-                />
+                {isLoadingVillageDetail ? (
+                  <Skeleton className={styles['skeleton-body']} />
+                ) : (
+                  <VillageDetailBody
+                    village_id={village_id || 0}
+                    rprsntv_nm={rprsntv_nm || '-'}
+                    phone_number={phone_number || '-'}
+                    exprn_cn={exprn_cn || '-'}
+                  />
+                )}
               </Col>
             </IonRow>
           </Grid>

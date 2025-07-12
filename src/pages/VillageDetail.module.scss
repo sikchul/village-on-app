@@ -9,6 +9,14 @@
 
     .village-detail-row {
       margin-bottom: 16px;
+
+      .skeleton-header {
+        height: 70px;
+      }
+
+      .skeleton-body {
+        height: 300px;
+      }
     }
   }
 }

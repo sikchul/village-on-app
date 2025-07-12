@@ -21,7 +21,10 @@ export default function VillageFilterBanner({
     <Card className={cn(styles['village-filter-banner'], className)}>
       <CardHeader>
         <IonCardTitle className={styles['filter-banner-title']}>
-          {`체험휴양마을 (${totalCount})`}
+          <span>{'체험휴양마을'}</span>
+          <Chip outline={false} color="tertiary">
+            {`검색결과: ${totalCount}`}
+          </Chip>
         </IonCardTitle>
       </CardHeader>
       <CardContent>

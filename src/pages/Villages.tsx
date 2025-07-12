@@ -40,6 +40,8 @@ export default function Villages({}: VillagesProps) {
 
   const {
     data: villages,
+    isLoading: isLoadingVillageList,
+    isError: isErrorVillageList,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage
@@ -126,7 +128,6 @@ export default function Villages({}: VillagesProps) {
       triggetRef.current = false;
       return;
     }
-
     if (inView && !isFetchingNextPage && hasNextPage && !triggetRef.current) {
       triggetRef.current = true;
       fetchNextPage();
@@ -152,6 +153,9 @@ export default function Villages({}: VillagesProps) {
             inViewRef={inViewRef}
             totalCount={totalCount}
             filterArray={filterArray}
+            isLoading={isLoadingVillageList}
+            isError={isErrorVillageList}
+            isFetchingNext={isFetchingNextPage}
           />
         </DefaultContentLayout>
       </Content>

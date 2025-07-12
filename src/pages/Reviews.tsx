@@ -39,6 +39,8 @@ export default function Reviews({}: ReviewsProps) {
 
   const {
     data: reviews,
+    isLoading: isLoadingReviewList,
+    isError: isErrorReviewList,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage
@@ -125,6 +127,9 @@ export default function Reviews({}: ReviewsProps) {
             inViewRef={inViewRef}
             totalCount={totalCount}
             filterArray={filterArray}
+            isLoading={isLoadingReviewList}
+            isError={isErrorReviewList}
+            isFetchingNext={isFetchingNextPage}
           />
         </DefaultContentLayout>
       </Content>

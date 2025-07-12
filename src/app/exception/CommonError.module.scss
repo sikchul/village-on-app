@@ -1,0 +1,11 @@
+.common-error {
+  margin: 42px 10px;
+
+  .common-error-row {
+    text-align: center;
+
+    .action-button {
+      --background: #677e32;
+    }
+  }
+}
